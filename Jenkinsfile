@@ -1,11 +1,6 @@
 pipeline {
-agent
-    {
-        node {
-                label 'master'
-                customWorkspace "${env.JobPath}"
-              }
-    }
+agent any
+
     stages 
     {
         stage('Start') {
@@ -13,10 +8,10 @@ agent
                 echo 'Hello'
             }
         }
-        stage ('Invoke_pipelineA') {
+        stage ('Invoke_Azure-pipeline') {
             steps {
-                build job: 'pipelineA', parameters: [
-                string(name: 'param1', value: "value1")
+                build job: 'azure', parameters: [
+                string(name: 'ARM_SUBSCRIPTION_ID', value: "6405e052-5a9e-4ef1-b6fa-91088a6ba1d6")
                 ]
             }
         }
